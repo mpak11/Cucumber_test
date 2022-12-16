@@ -1,17 +1,15 @@
-package Step;
+package step;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import dev.failsafe.internal.util.Assert;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import net.jodah.failsafe.internal.util.Assert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class MaimPageElementsTests {
+public class MainPageElementsTests {
     private final SelenideElement searchFild = $x("//*[@placeholder='Поиск по сайту']");
     private final SelenideElement searchButton = $x("//*[@value='Найти']");
     private final SelenideElement searchValue = $x("//*[@class='b-head__found']");

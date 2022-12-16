@@ -1,10 +1,9 @@
-package Step;
+package step;
 
 import com.codeborne.selenide.SelenideElement;
+import dev.failsafe.internal.util.Assert;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.jodah.failsafe.internal.util.Assert;
-
 import static com.codeborne.selenide.Selenide.$x;
 
 public class LogOut {
