@@ -1,4 +1,4 @@
-package Step;
+package step;
 
 import com.codeborne.selenide.Selenide;
 import io.cucumber.java.en.Given;
