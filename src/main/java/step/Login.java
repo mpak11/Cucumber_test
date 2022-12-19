@@ -7,15 +7,16 @@ import io.cucumber.java.en.When;
 import pages.MainPage;
 
 public class Login {
-    public static MainPage mainPage;
+    public static MainPage mainPage = new MainPage();
     @When("Вводим логин и пароль")
-    public void loggin() {
+    public Login loggin() {
         mainPage.logging();
+        return this;
     }
 
     @And("Нажимаем кнопку войти")
     public void enterButtonClick() {
-        mainPage.clickEnterBustton();
+        mainPage.clickEnterButton();
     }
 
     @Then("Появилась кнопка выхода")
