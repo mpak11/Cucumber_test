@@ -1,56 +1,50 @@
 package step;
 
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 import dev.failsafe.internal.util.Assert;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import static com.codeborne.selenide.Selenide.$x;
+import pages.ClassPage;
+import pages.MainPage;
+import pages.SearchPage;
 
 public class MainPageElementsTests {
-    private final SelenideElement searchFild = $x("//*[@placeholder='Поиск по сайту']");
-    private final SelenideElement searchButton = $x("//*[@value='Найти']");
-    private final SelenideElement searchValue = $x("//*[@class='b-head__found']");
-    private final SelenideElement mainPageButton = $x("//*[@class='menu menu-main']/li[1]");
-    private final SelenideElement mainPageNews = $x("//*[@class='section-title']");
-    private final SelenideElement classButton  = $x("//a[@href='/class/']");
-    private final SelenideElement classList  = $x("//div[@id='classes']");
+    public static MainPage mainPage = new MainPage();
+    public static SearchPage searchPage = new SearchPage();
+    public static ClassPage classPage = new ClassPage();
+
 
     @And("Вводим данные в поле поиска")
     public void inputValueToSearch() {
-        searchFild.sendKeys("Гоблин");
+        mainPage.sendKeysToSearch();
     }
 
     @And("Нажимаем кнопку поиск")
     public void searchButtonClick() {
-        searchButton.click();
+        mainPage.clickSearchButton();
     }
 
     @Then("Сравниваем результат")
     public void isDisplayedSearchValue() {
-        Selenide.Wait().until(ExpectedConditions.textToBePresentInElement(searchValue, "нашёл"));
-        Assert.isTrue(searchValue.isDisplayed(), "Проверьте параметры поиска");
+        Assert.isTrue(mainPage.isDisplayedSearch(), "Проверьте параметры поиска");
     }
 
     @And("Нажимаем на кнопку Главная")
-    public void mainPageButtonClick() {
-        mainPageButton.click();
+    public void mainPageReturn() {
+        searchPage.mainPageButtonClick();
     }
 
     @Then("Отображаются новости сайта")
     public void mainPageNewIsDisplayed() {
-        Assert.isTrue(mainPageNews.isDisplayed(),"Проверьте работоспособность кнопки Главная");
+        Assert.isTrue(mainPage.mainPageNewsIsVisible(),"Проверьте работоспособность кнопки Главная");
     }
 
     @And("Нажимаем на кнопку Классы")
     public void classesButtonClick() {
-        classButton.click();
+        mainPage.clickClassButton();
     }
 
     @And("Проверяем что открылась страница со списком классов")
     public void checkClassesList() {
-        Assert.isTrue(classList.isDisplayed(), "Проверьте страницу Классов");
+        Assert.isTrue(classPage.checkClassListIsDisplayed(), "Проверьте страницу Классов");
     }
 }

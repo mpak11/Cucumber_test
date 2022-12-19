@@ -1,4 +1,4 @@
-package Step;
+package step;
 
 public class TestBranch {
 }
